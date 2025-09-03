@@ -34,7 +34,7 @@ public abstract class BaseUtilScreen extends Screen {
     @Override
     public void renderBackground(@NotNull GuiGraphics graphics, int i, int j, float f) {
         super.renderBackground(graphics, i, j, f);
-        graphics.blitSprite(RenderType::guiTextured, GuiUtil.BACKGROUND_SPRITE, this.left, this.top, this.menuWidth, this.menuHeight);
+        graphics.blitSprite(RenderType.guiTextured(), GuiUtil.BACKGROUND_SPRITE, this.left, this.top, this.menuWidth, this.menuHeight);
     }
 
     @Override

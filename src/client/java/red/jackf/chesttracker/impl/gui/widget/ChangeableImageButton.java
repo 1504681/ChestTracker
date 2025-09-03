@@ -31,7 +31,7 @@ public class ChangeableImageButton extends Button {
     @Override
     public void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
         ResourceLocation resourceLocation = this.sprites.get(this.isActive(), this.isHoveredOrFocused());
-        guiGraphics.blitSprite(RenderType::guiTextured, resourceLocation, this.getX(), this.getY(), this.width, this.height);
+        guiGraphics.blitSprite(resourceLocation, this.getX(), this.getY(), this.width, this.height);
     }
 
     @Environment(EnvType.CLIENT)

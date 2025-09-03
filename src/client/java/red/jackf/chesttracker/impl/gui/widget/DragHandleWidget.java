@@ -47,7 +47,7 @@ public class DragHandleWidget extends AbstractWidget {
 
     @Override
     protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
-        graphics.blitSprite(RenderType::guiTextured, this.isHoveredOrFocused() ? TEXTURE.enabledFocused() : TEXTURE.enabled(), this.getX(), this.getY(), WIDTH, HEIGHT);
+        graphics.blitSprite(RenderType.guiTextured(), this.isHoveredOrFocused() ? TEXTURE.enabledFocused() : TEXTURE.enabled(), this.getX(), this.getY(), WIDTH, HEIGHT);
 
         if (this.target != null) {
             int y = this.highlightStartY + yHeight * this.target;
@@ -66,8 +66,8 @@ public class DragHandleWidget extends AbstractWidget {
     }
 
     @Override
-    public void onClick(double mouseX, double mouseY) {
-        super.onClick(mouseX, mouseY);
+    public void onClick(double mouseX, double mouseY, boolean isPressed) {
+        super.onClick(mouseX, mouseY, isPressed);
         this.updateTarget(mouseY);
     }
 

@@ -20,18 +20,18 @@ public class CustomEditBox extends EditBox {
 
     @Override
     public void renderWidget(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
-        graphics.blitSprite(RenderType::guiTextured, GuiUtil.SEARCH_BAR_SPRITE, this.getX(), this.getY(), this.getWidth(), this.getHeight());
-        graphics.pose().translate(2, 2, 0);
+        graphics.blitSprite(RenderType.guiTextured(), GuiUtil.SEARCH_BAR_SPRITE, this.getX(), this.getY(), this.getWidth(), this.getHeight());
+        graphics.pose().translate(2, 2);
         super.renderWidget(graphics, mouseX, mouseY, partialTick);
-        graphics.pose().translate(-2, -2, 0);
+        graphics.pose().translate(-2, -2);
     }
 
     @Override
-    public boolean mouseClicked(double mouseX, double mouseY, int button) {
+    public boolean mouseClicked(double mouseX, double mouseY, int button, boolean altDown) {
         if (isMouseOver(mouseX, mouseY) && button == GLFW.GLFW_MOUSE_BUTTON_2) {
             this.setValue("");
             return true;
         }
-        return super.mouseClicked(mouseX, mouseY, button);
+        return super.mouseClicked(mouseX, mouseY, button, altDown);
     }
 }

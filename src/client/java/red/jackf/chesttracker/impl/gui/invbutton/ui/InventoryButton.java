@@ -120,7 +120,7 @@ public class InventoryButton extends AbstractWidget {
         // NOTE: texture is 11x11 while button is 9x9
 
         ResourceLocation texture = TEXTURE.get(this.isActive(), this.isHoveredOrFocused());
-        graphics.blitSprite(RenderType::guiTextured, texture, this.getX() - 1, this.getY() - 1, IMAGE_SIZE, IMAGE_SIZE);
+        graphics.blitSprite(RenderType.guiTextured(), texture, this.getX() - 1, this.getY() - 1, IMAGE_SIZE, IMAGE_SIZE);
 
         for (AbstractWidget secondary : this.secondaryButtons) {
             secondary.render(graphics, mouseX, mouseY, partialTick);
@@ -195,15 +195,15 @@ public class InventoryButton extends AbstractWidget {
     }
 
     @Override
-    public boolean mouseClicked(double mouseX, double mouseY, int button) {
+    public boolean mouseClicked(double mouseX, double mouseY, int button, boolean altDown) {
         if (this.isMouseOver(mouseX, mouseY)) {
             this.canDrag = true;
             this.mouseDownStart = Util.getMillis();
         }
         for (AbstractWidget secondary : this.secondaryButtons) {
-            if (secondary.mouseClicked(mouseX, mouseY, button)) return true;
+            if (secondary.mouseClicked(mouseX, mouseY, button, altDown)) return true;
         }
-        return super.mouseClicked(mouseX, mouseY, button);
+        return super.mouseClicked(mouseX, mouseY, button, altDown);
     }
 
     @Override

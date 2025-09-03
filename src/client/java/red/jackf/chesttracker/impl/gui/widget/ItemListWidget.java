@@ -68,7 +68,7 @@ public class ItemListWidget extends AbstractWidget {
     }
 
     @Override
-    public void onClick(double mouseX, double mouseY) {
+    public void onClick(double mouseX, double mouseY, boolean isPressed) {
         var items = getOffsetItems();
         int x = (int) ((mouseX - getX()) / GuiConstants.GRID_SLOT_SIZE);
         int y = (int) ((mouseY - getY()) / GuiConstants.GRID_SLOT_SIZE);
@@ -81,7 +81,7 @@ public class ItemListWidget extends AbstractWidget {
 
     @Override
     protected void renderWidget(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
-        graphics.blitSprite(RenderType::guiTextured, BACKGROUND_SPRITE, getX(), getY(), getWidth(), getHeight()); // background
+        graphics.blitSprite(RenderType.guiTextured(), BACKGROUND_SPRITE, getX(), getY(), getWidth(), getHeight()); // background
         this.renderItems(graphics); // item models
         this.renderItemDecorations(graphics); // stack size and durability
         this.renderAdditional(graphics, mouseX, mouseY); // tooltips
@@ -117,10 +117,10 @@ public class ItemListWidget extends AbstractWidget {
             int offset = -GuiConstants.GRID_SLOT_SIZE + 2;
 
             // move to correct slot on screen
-            graphics.pose().pushPose();
+            graphics.pose().push();
             int bottomRightX = this.getX() + GuiConstants.GRID_SLOT_SIZE * ((i % gridWidth) + 1);
             int bottomRightY = this.getY() + GuiConstants.GRID_SLOT_SIZE * ((i / gridWidth) + 1);
-            graphics.pose().translate(bottomRightX - 1, bottomRightY - 1, 0);
+            graphics.pose().translate(bottomRightX - 1, bottomRightY - 1);
 
             // durability, scaled normally
             graphics.renderItemDecorations(Minecraft.getInstance().font, item, offset, offset, "");
@@ -130,12 +130,12 @@ public class ItemListWidget extends AbstractWidget {
             int textScale = scales.getFirst();
             int guiScale = scales.getSecond();
             float scaleFactor = (float) textScale / guiScale;
-            graphics.pose().scale(scaleFactor, scaleFactor, 1f);
+            graphics.pose().scale(scaleFactor, scaleFactor);
 
             // render count text scaled down
             String text = Strings.magnitude(item.getCount(), 0);
             graphics.renderItemDecorations(Minecraft.getInstance().font, DUMMY_ITEM_FOR_COUNT, offset, offset, text); // Count
-            graphics.pose().popPose();
+            graphics.pose().pop();
         }
     }
 
@@ -156,10 +156,10 @@ public class ItemListWidget extends AbstractWidget {
             if (stack.getCount() > 999) lines.add(Component.literal(Strings.commaSeparated(stack.getCount()))
                     .withStyle(ChatFormatting.GREEN));
             var image = stack.getTooltipImage();
-            graphics.pose().pushPose();
-            graphics.pose().translate(0, 0, 150f);
-            graphics.renderTooltip(Minecraft.getInstance().font, lines, image, mouseX, mouseY);
-            graphics.pose().popPose();
+            graphics.pose().push();
+            graphics.pose().translate(0, 0);
+            graphics.renderTooltip(Minecraft.getInstance().font, stack, mouseX, mouseY);
+            graphics.pose().pop();
         }
     }
 

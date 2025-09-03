@@ -354,8 +354,8 @@ public class ChestTrackerScreen extends Screen {
     @Override
     public void renderBackground(@NotNull GuiGraphics graphics, int i, int j, float f) {
         super.renderBackground(graphics, i, j, f);
-        graphics.blitSprite(RenderType::guiTextured, GuiUtil.BACKGROUND_SPRITE, left, top, menuWidth, menuHeight);
-        ifSearchables(() -> graphics.blitSprite(RenderType::guiTextured, GuiUtil.SEARCH_BAR_SPRITE, search.getX() - 2, search.getY() - 2, search.getWidth() + 4, search.getHeight()));
+        graphics.blitSprite(RenderType.guiTextured(), GuiUtil.BACKGROUND_SPRITE, left, top, menuWidth, menuHeight);
+        ifSearchables(() -> graphics.blitSprite(RenderType.guiTextured(), GuiUtil.SEARCH_BAR_SPRITE, search.getX() - 2, search.getY() - 2, search.getWidth() + 4, search.getHeight()));
     }
 
     @Override
@@ -379,9 +379,9 @@ public class ChestTrackerScreen extends Screen {
     }
 
     @Override
-    public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        if (this.search.isFocused() && ifSearchables(a -> a.mouseClicked(mouseX, mouseY, button))) return true;
-        return super.mouseClicked(mouseX, mouseY, button);
+    public boolean mouseClicked(double mouseX, double mouseY, int button, boolean altDown) {
+        if (this.search.isFocused() && ifSearchables(a -> a.mouseClicked(mouseX, mouseY, button, altDown))) return true;
+        return super.mouseClicked(mouseX, mouseY, button, altDown);
     }
 
     @Override

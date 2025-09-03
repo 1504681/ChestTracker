@@ -50,11 +50,11 @@ public class SecondaryButton extends AbstractWidget {
         int x = Mth.lerpDiscrete(factor, this.startX - 1, this.getX() - 1);
         int y = Mth.lerpDiscrete(factor, this.startY - 1, this.getY() - 1);
 
-        graphics.blitSprite(RenderType::guiTextured, texture, x, y, InventoryButton.IMAGE_SIZE, InventoryButton.IMAGE_SIZE);
+        graphics.blitSprite(RenderType.guiTextured(), texture, x, y, InventoryButton.IMAGE_SIZE, InventoryButton.IMAGE_SIZE);
     }
 
     @Override
-    public void onClick(double mouseX, double mouseY) {
+    public void onClick(double mouseX, double mouseY, boolean isPressed) {
         onClick.run();
     }
 

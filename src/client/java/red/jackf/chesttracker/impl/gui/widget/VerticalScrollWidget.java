@@ -49,10 +49,10 @@ public class VerticalScrollWidget extends AbstractWidget {
 
     @Override
     protected void renderWidget(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
-        graphics.blitSprite(RenderType::guiTextured, BACKGROUND, getX(), getY(), width, height);
+        graphics.blitSprite(RenderType.guiTextured(), BACKGROUND, getX(), getY(), width, height);
 
         int handleY = (int) ((this.height - HANDLE_HEIGHT - 2 * INSET) * progress);
-        graphics.blitSprite(RenderType::guiTextured, disabled ? HANDLE_TEXTURE.disabled() : HANDLE_TEXTURE.enabled(),
+        graphics.blitSprite(RenderType.guiTextured(), disabled ? HANDLE_TEXTURE.disabled() : HANDLE_TEXTURE.enabled(),
                 this.getX() + INSET,
                 this.getY() + INSET + handleY,
                 HANDLE_WIDTH,
@@ -64,12 +64,12 @@ public class VerticalScrollWidget extends AbstractWidget {
     }
 
     @Override
-    public boolean mouseClicked(double mouseX, double mouseY, int button) {
+    public boolean mouseClicked(double mouseX, double mouseY, int button, boolean altDown) {
         if (this.visible && !this.disabled && this.isWithinBounds(mouseX, mouseY) && button == 0) {
             this.scrolling = true;
             return true;
         } else {
-            return super.mouseClicked(mouseX, mouseY, button);
+            return super.mouseClicked(mouseX, mouseY, button, altDown);
         }
     }
 

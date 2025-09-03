@@ -31,7 +31,7 @@ public class ItemButton extends Button {
     protected void renderWidget(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
         switch (background) {
             case VANILLA -> super.renderWidget(graphics, mouseX, mouseY, partialTick);
-            case CUSTOM -> graphics.blitSprite(RenderType::guiTextured, this.highlighted || this.isHovered() ? TEXTURE.enabledFocused() : TEXTURE.enabled(),
+            case CUSTOM -> graphics.blitSprite(this.highlighted || this.isHovered() ? TEXTURE.enabledFocused() : TEXTURE.enabled(),
                                            getX(),
                                            getY(),
                                            SIZE,

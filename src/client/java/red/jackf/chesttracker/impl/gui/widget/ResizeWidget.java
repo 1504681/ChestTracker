@@ -53,7 +53,7 @@ public class ResizeWidget extends AbstractWidget {
 
     @Override
     protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
-        graphics.blit(RenderType::guiTextured, TEXTURE, this.getX(), this.getY(), 0, 0, SIZE, SIZE, SIZE, SIZE);
+        graphics.blit(RenderType.guiTextured(), TEXTURE, this.getX(), this.getY(), 0, 0, SIZE, SIZE, SIZE, SIZE);
 
         // border
         if (this.target != null) {
@@ -81,8 +81,8 @@ public class ResizeWidget extends AbstractWidget {
     }
 
     @Override
-    public void onClick(double mouseX, double mouseY) {
-        super.onClick(mouseX, mouseY);
+    public void onClick(double mouseX, double mouseY, boolean isPressed) {
+        super.onClick(mouseX, mouseY, isPressed);
         updateTarget(mouseX, mouseY);
     }
 

@@ -68,7 +68,7 @@ public class HoldToConfirmButton extends AbstractButton {
     }
 
     @Override
-    public boolean mouseClicked(double mouseX, double mouseY, int button) {
+    public boolean mouseClicked(double mouseX, double mouseY, int button, boolean altDown) {
         if (isMouseOver(mouseX, mouseY) && active) {
             playDownSound(1f);
             held.add(-1);

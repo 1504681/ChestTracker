@@ -53,7 +53,7 @@ public class StringSelectorWidget<T> extends AbstractWidget {
 
     @Override
     protected void renderWidget(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
-        graphics.blitSprite(RenderType::guiTextured, GuiUtil.SEARCH_BAR_SPRITE, this.getX(), this.getY(), this.getWidth(), this.getHeight());
+        graphics.blitSprite(RenderType.guiTextured(), GuiUtil.SEARCH_BAR_SPRITE, this.getX(), this.getY(), this.getWidth(), this.getHeight());
         int i = 0;
         var hoveredIndex = getHoveredIndex(mouseX, mouseY);
         lastHovered = null;
@@ -73,7 +73,7 @@ public class StringSelectorWidget<T> extends AbstractWidget {
     }
 
     @Override
-    public void onClick(double mouseX, double mouseY) {
+    public void onClick(double mouseX, double mouseY, boolean isPressed) {
         if (lastHovered != null) onSelect.accept(lastHovered);
     }
 
